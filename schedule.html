@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정 관리 시스템 - 공유 버전</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>일정 관리 시스템</h1>
+            <p>효율적인 인원 배치를 위한 스마트 스케줄링 (공유 버전)</p>
+        </div>
+        
+        <div class="controls">
+            <div class="stats">
+                <div class="stat-item">
+                    <span>총 인원</span>
+                    <span class="stat-number" id="total-people">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>선택 시간</span>
+                    <span class="stat-number" id="selected-hours">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>평균 참여</span>
+                    <span class="stat-number" id="avg-hours">0h</span>
+                </div>
+                <div class="stat-item">
+                    <span id="data-source-status">로컬 데이터</span>
+                </div>
+            </div>
+
+            <div class="backup-buttons">
+                <span class="auto-save-status" id="auto-save-status">자동저장 활성</span>
+                <button class="btn btn-primary" onclick="loadSharedData()">공유 데이터 불러오기</button>
+                <button class="btn btn-secondary" onclick="backupData()">백업</button>
+                <button class="btn btn-primary" onclick="document.getElementById('restore-input').click()">복원</button>
+                <input type="file" id="restore-input" class="file-input" accept=".json" onchange="restoreData(event)">
+            </div>
+        </div>
+
+        <!-- 공유 데이터 설정 패널 -->
+        <div class="shared-data-panel" id="shared-data-panel">
+            <div class="panel-header">
+                <h3>공유 데이터 설정</h3>
+                <button class="btn-close" onclick="closeSharedPanel()">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="input-group">
+                    <label for="json-url">JSON 파일 URL:</label>
+                    <input type="url" id="json-url" placeholder="https://example.com/schedule.json" />
+                    <small>GitHub Raw URL, Firebase Storage URL, 또는 다른 JSON 파일 URL을 입력하세요</small>
+                </div>
+                <div class="panel-buttons">
+                    <button class="btn btn-primary" onclick="loadFromURL()">불러오기</button>
+                    <button class="btn btn-secondary" onclick="saveCurrentAsShared()">현재 데이터를 JSON으로 내보내기</button>
+                </div>
+                <div class="url-examples">
+                    <h4>URL 예시:</h4>
+                    <ul>
+                        <li><strong>GitHub:</strong> https://raw.githubusercontent.com/username/repo/main/schedule.json</li>
+                        <li><strong>Firebase:</strong> https://firebasestorage.googleapis.com/v0/b/project.appspot.com/o/schedule.json?alt=media</li>
+                        <li><strong>Dropbox:</strong> Dropbox 공유 링크에서 ?dl=0을 ?dl=1로 변경</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th class="person-info">인원 정보</th>
+                        <th>00</th><th>01</th><th>02</th><th>03</th><th>04</th><th>05</th>
+                        <th>06</th><th>07</th><th>08</th><th>09</th><th>10</th><th>11</th>
+                        <th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th>
+                        <th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="hourly-stats">
+            <h3 class="section-title">시간대별 참여 현황</h3>
+            <p class="section-subtitle">각 시간대의 참여 인원을 확인하세요</p>
+            <div class="hourly-chart" id="hourly-chart"></div>
+        </div>
+        
+        <div class="manager-changes">
+            <h3 class="section-title">관리자 교체 현황</h3>
+            <p class="section-subtitle">시간대별 인력 교체 상황을 확인하세요</p>
+            <div class="changes-grid" id="changes-grid"></div>
+        </div>
+    </div>
+
+    <script src="shared-script.js"></script>
+</body>
+</html>
