@@ -1,0 +1,202 @@
+/* 선착순 섹션 스타일 */
+.firstcome-content {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.notice-section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1.5rem auto;
+    max-width: 600px;
+    border: 2px solid rgba(84, 0, 255, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.important-notice {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+}
+
+.privacy-notice {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+}
+
+.time-highlight {
+    background: #FF4444;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.kakao-highlight {
+    background: #FEE500;
+    color: #333;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.repeat-highlight {
+    background: #FF4444;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+
+
+.countdown-section {
+    background: linear-gradient(135deg, #5400FF, #6A1FFF);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(84, 0, 255, 0.2);
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+.countdown-timer {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#countdown-display {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: 3px;
+    display: block;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+#countdown-display.urgent {
+    color: #ff4444;
+    animation: urgentBlink 1s infinite;
+}
+
+@keyframes urgentBlink {
+    0% { 
+        color: #ff4444;
+        text-shadow: 0 2px 10px rgba(255, 68, 68, 0.5);
+    }
+    50% { 
+        color: #ff6666;
+        text-shadow: 0 2px 15px rgba(255, 68, 68, 0.8);
+    }
+    100% { 
+        color: #ff4444;
+        text-shadow: 0 2px 10px rgba(255, 68, 68, 0.5);
+    }
+}
+
+.reveal-button {
+    background: linear-gradient(135deg, #FFF554, #FFFF77);
+    color: #5400FF;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 245, 84, 0.4);
+    min-width: 200px;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.reveal-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 245, 84, 0.6);
+}
+
+.reveal-button:disabled {
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.reveal-button.active {
+    background: linear-gradient(135deg, #FFF554, #FFFF77);
+    color: #5400FF;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 4px 20px rgba(255, 245, 84, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 30px rgba(255, 245, 84, 0.8);
+        transform: translateY(-2px) scale(1.05);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(255, 245, 84, 0.4);
+    }
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .countdown-section {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        margin: 1rem auto;
+    }
+
+    #countdown-display {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .reveal-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+
+    .countdown-timer {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-section {
+        padding: 1.5rem 1rem;
+    }
+
+    #countdown-display {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .reveal-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
+}
